@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if(!isset($_SESSION['Name']))
+    {
+        header('location: login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,27 +54,27 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./table.html">
+                        <a class="nav-link" href="coaches.php">
                             <i class="nc-icon nc-notes"></i>
                             <p>Coaches</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./typography.html">
+                        <a class="nav-link" href="coaches.php">
                             <i class="nc-icon nc-paper-2"></i>
                             <p>Refees</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./icons.html">
+                        <a class="nav-link" href="adminstrators.php">
                             <i class="nc-icon nc-atom"></i>
-                            <p>Icons</p>
+                            <p>Admistrators</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./maps.html">
+                        <a class="nav-link" href="view_members.php">
                             <i class="nc-icon nc-pin-3"></i>
-                            <p>Maps</p>
+                            <p>Members</p>
                         </a>
                     </li>
                     <li>
@@ -76,7 +84,7 @@
                         </a>
                     </li>
                     <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="upgrade.html">
+                        <a class="nav-link active" href="logout.php">
                             <i class="nc-icon nc-alien-33"></i>
                             <p>Log Out</p>
                         </a>
@@ -121,7 +129,7 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Nyasha Chikobvore</span>
+                                    <span class="no-icon"><?php echo $_SESSION['Name']." ".$_SESSION['Surname'];?></span>
                                 </a>
                             </li>
                             <li class="nav-item">

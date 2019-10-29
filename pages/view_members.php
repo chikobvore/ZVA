@@ -15,7 +15,8 @@
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../assets/css/demo.css" rel="stylesheet" />
+    <link href="../assets/css/main.css" rel="stylesheet" />
+    <script type="text/javascript" src="../assets/js/form-handler.js"></script>
 </head>
 
 <body>
@@ -26,47 +27,47 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-            <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="#" class="simple-text">
                         Zimbabwe Volleyball Association
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./user.html">
+                        <a class="nav-link" href="players.php">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>Players</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./table.html">
+                        <a class="nav-link" href="coaches.php">
                             <i class="nc-icon nc-notes"></i>
                             <p>Coaches</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./typography.html">
+                        <a class="nav-link" href="coaches.php">
                             <i class="nc-icon nc-paper-2"></i>
                             <p>Refees</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./icons.html">
+                        <a class="nav-link" href="adminstrators.php">
                             <i class="nc-icon nc-atom"></i>
-                            <p>Icons</p>
+                            <p>Admistrators</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./maps.html">
+                        <a class="nav-link active" href="view_members.php">
                             <i class="nc-icon nc-pin-3"></i>
-                            <p>Maps</p>
+                            <p>Members</p>
                         </a>
                     </li>
                     <li>
@@ -140,89 +141,67 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Registered Users</h4>
-                                    <p class="card-category">Population</p>
-                                </div>
-                                <div class="card-body ">
-                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Players
-                                        <i class="fa fa-circle text-danger"></i> Referees
-                                        <i class="fa fa-circle text-warning"></i> Coaches
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                                    </div>
-                                </div>
-                            </div>
+    
+           <div id = "players"> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tile">
+                        <div class="tile-header">
+                            <img src = "../assets/img/logo2.png" style = "display: inline;">
+                            <h1 style = "display: inline;margin-left:60px;">   Zimbabwe Volleyball Association</h1>
                         </div>
-                        <div class="col-md-8">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Users Behavior</h4>
-                                    <p class="card-category">24 Hours performance</p>
-                                </div>
-                                <div class="card-body ">
-                                    <div id="chartHours" class="ct-chart"></div>
-                                </div>
-                                <div class="card-footer ">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Players
-                                        <i class="fa fa-circle text-danger"></i> Referees
-                                        <i class="fa fa-circle text-warning"></i> Coaches
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
-                            </div>
+                        <hr>
+                        <div class="tile-body">
+                        <table class="table table-hover table-bordered" id="sampleTable">
+                            <thead>
+                                <tr>
+                                    <th>Member No</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Gender</th>
+                                    <th>National ID</th>
+                                    <th>Passport No</th>
+                                    <th>Email</th>
+                                    <th>Contact</th>
+                                    <th>Physical Address</th>
+                                    <th>Photo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+
+                                require '../dbh/dbh.php';
+                                $sql = "SELECT * FROM members";
+                                $result = mysqli_query($Conn,$sql);
+                                $confirm = mysqli_num_rows($result);
+                                if ($confirm >0 )
+                                {
+                                    while ($row = mysqli_fetch_assoc($result))
+                                    {
+                                        $pic = $row['Profile'];
+                                          echo "<tr>".
+                                                    "<td>".$row['Member_No']."</td>".
+                                                    "<td>".$row['Name']."</td>".
+                                                    "<td>".$row['Surname']."</td>".
+                                                    "<td>".$row['Gender']."</td>".
+                                                    "<td>".$row['National_ID']."</td>".
+                                                    "<td>".$row['Passport_No']."</td>".
+                                                    "<td>".$row['Email']."</td>".
+                                                    "<td>".$row['Contact']."</td>".
+                                                    "<td>".$row['Physical_Address']."</td>".
+                                                    "<td>"."<img src = '$pic' height= '50px' width = '50px'>"."</td>".
+                                              "</tr>";
+                                    }
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                         </div>
                     </div>
-                   
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav>
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-center">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                        </p>
-                    </nav>
-                </div>
-            </footer>
+            </div>
+
         </div>
     </div>
 </body>
@@ -230,6 +209,14 @@
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../assets/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../assets/js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">$('#sampleTable').DataTable();</script>
+<script type="text/javascript">$('#sampleTable1').DataTable();</script>
+<script type="text/javascript">$('#sampleTable2').DataTable();</script>
+<script type="text/javascript">$('#sampleTable3').DataTable();</script>
+<script type="text/javascript">$('#sampleTable4').DataTable();</script>
+<script type="text/javascript">$('#sampleTable5').DataTable();</script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="../assets/js/plugins/bootstrap-switch.js"></script>
 <!--  Google Maps Plugin    -->
@@ -237,7 +224,7 @@
 <!--  Chartist Plugin  -->
 <script src="../assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- <script src="../assets/js/plugins/bootstrap-notify.js"></script> -->
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->

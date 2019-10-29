@@ -77,6 +77,7 @@ function info()
     document.getElementById('health_info').style.display = "none";
     document.getElementById('sporting').style.display = "none";
     document.getElementById('education').style.display = "none";
+    document.getElementById('ntaa').style.display = "none";
 }
 function proffession()
 {
@@ -85,6 +86,7 @@ function proffession()
     document.getElementById('health_info').style.display = "none";
     document.getElementById('sporting').style.display = "none";
     document.getElementById('education').style.display = "none";
+    document.getElementById('ntaa').style.display = "none";
 }
 function health_information()
 {
@@ -93,6 +95,7 @@ function health_information()
     document.getElementById('health_info').style.display = "contents";
     document.getElementById('sporting').style.display = "none";
     document.getElementById('education').style.display = "none";
+    document.getElementById('ntaa').style.display = "none";
 }
 function sporting()
 {
@@ -101,6 +104,7 @@ function sporting()
     document.getElementById('health_info').style.display = "none";
     document.getElementById('sporting').style.display = "contents";
     document.getElementById('education').style.display = "none";
+    document.getElementById('ntaa').style.display = "none";
 }
 function education()
 {
@@ -109,6 +113,16 @@ function education()
     document.getElementById('health_info').style.display = "none";
     document.getElementById('sporting').style.display = "none";
     document.getElementById('education').style.display = "contents";
+    document.getElementById('ntaa').style.display = "none";
+}
+function ntaaa()
+{
+    document.getElementById('players').style.display = "none";
+    document.getElementById('prof').style.display = "none";
+    document.getElementById('health_info').style.display = "none";
+    document.getElementById('sporting').style.display = "none";
+    document.getElementById('education').style.display = "none";
+    document.getElementById('ntaa').style.display = "contents";
 }
 function moredetails1()
 {
@@ -156,4 +170,43 @@ function nta()
     document.getElementById('institutionsCoached').style.display = "none";
     document.getElementById('pta').style.display = "none";
     document.getElementById('healthdetails').style.display = "none";
+}
+function coaching()
+{
+    document.getElementById('Coaching').style.display = "contents";
+    document.getElementById('nta').style.display = "none";
+    document.getElementById('more-details1').style.display = "none";
+    document.getElementById('basic1').style.display = "none";
+    document.getElementById('institutionsCoached').style.display = "none";
+    document.getElementById('pta').style.display = "none";
+    document.getElementById('uploads').style.display = "none";
+}
+function uploads()
+{
+    document.getElementById('institutionsCoached').style.display = "none";
+    document.getElementById('uploads').style.display = "contents";
+    document.getElementById('nta').style.display = "none";
+    document.getElementById('more-details1').style.display = "none";
+    document.getElementById('basic1').style.display = "none";
+    document.getElementById('pta').style.display = "none";
+    document.getElementById('Coaching').style.display = "none";
+}
+function complete2()
+{
+    document.getElementById('uploads').style.display = "contents";
+    document.getElementById('nta').style.display = "contents";
+    document.getElementById('more-details1').style.display = "contents";
+    document.getElementById('basic1').style.display = "contents";
+    document.getElementById('institutionsCoached').style.display = "contents";
+    document.getElementById('pta').style.display = "contents";
+    document.getElementById('Coaching').style.display = "contents";
+    document.getElementById('last1').style.display = "contents";
+    document.getElementById('btnHome1').style.display = "none";
+    document.getElementById('more1').style.display = "none";
+    document.getElementById('pro1').style.display = "none";
+    document.getElementById('edu1').style.display = "none";
+    document.getElementById('sports1').style.display = "none";
+    document.getElementById('coaching1').style.display = "none";
+    document.getElementById('uploads1').style.display = "none";
+    
 }

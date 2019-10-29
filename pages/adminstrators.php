@@ -40,8 +40,8 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
-                        <a class="nav-link active" href="players.php">
+                    <li class = "active">
+                        <a class="nav-link" href="players.php">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>Players</p>
                         </a>
@@ -53,15 +53,15 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="coaches.php">
+                        <a class="nav-link" href="refree">
                             <i class="nc-icon nc-paper-2"></i>
                             <p>Refees</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="adminstrators.php">
+                        <a class="nav-link active" href="adminstrators.php">
                             <i class="nc-icon nc-atom"></i>
-                            <p>Admistrators</p>
+                            <p>Adminstrators</p>
                         </a>
                     </li>
                     <li>
@@ -159,8 +159,6 @@
                                     <th>Name</th>
                                     <th>Surname</th>
                                     <th>Gender</th>
-                                    <th>Date of Birth</th>
-                                    <th>Place of Birth</th>
                                     <th>National ID</th>
                                     <th>Passport No</th>
                                     <th>Email</th>
@@ -173,27 +171,25 @@
                                 <?php
 
                                 require '../dbh/dbh.php';
-                                $sql = "SELECT * FROM players";
+                                $sql = "SELECT * FROM adminstrators";
                                 $result = mysqli_query($Conn,$sql);
                                 $confirm = mysqli_num_rows($result);
                                 if ($confirm >0 )
                                 {
                                     while ($row = mysqli_fetch_assoc($result))
                                     {
-                                        $pic = $row['Profile_Picture'];
+                                        $pic = $row['Profile'];
                                           echo "<tr>".
                                                     "<td>".$row['Member_No']."</td>".
                                                     "<td>".$row['Name']."</td>".
                                                     "<td>".$row['Surname']."</td>".
                                                     "<td>".$row['Gender']."</td>".
-                                                    "<td>".$row['DOB']."</td>".
-                                                    "<td>".$row['Place_of_Birth']."</td>".
                                                     "<td>".$row['National_ID']."</td>".
                                                     "<td>".$row['Passport_No']."</td>".
                                                     "<td>".$row['Email']."</td>".
                                                     "<td>".$row['Contact']."</td>".
                                                     "<td>".$row['Physical_Address']."</td>".
-                                                    "<td>"."<img src = '$pic' height= '50px' width = '50px'>"."</td>".
+                                                    "<td>"."<a href = '$pic'>"."<img src = '$pic' height= '50px' width = '50px'>"."</a>"."</td>".
                                               "</tr>";
                                     }
                                 }
@@ -222,19 +218,19 @@
                                     <th>Member No</th>
                                     <th>Name</th>
                                     <th>Surname</th>
-                                    <th>Current Club</th>
+                                    <th>Current Position</th>
                                     <th>Province</th>
-                                    <th>Contract Date</th>
-                                    <th>Experiary Date</th>
-                                    <th>Previous Club</th>
-                                    <th>Previous Club Province</th>
+                                    <th>Organization</th>
+                                    <th>Telephone</th>
+                                    <th>Period in Position</th>
+                                    <th>End of Tenure</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
 
                                 require '../dbh/dbh.php';
-                                $sql = "SELECT * FROM players,players_professional_information WHERE players.Member_No = players_professional_information.Member_No";
+                                $sql = "SELECT * FROM adminstrators,admin_work_details WHERE adminstrators.Member_No = admin_work_details.Member_No";
                                 $result = mysqli_query($Conn,$sql);
                                 $confirm = mysqli_num_rows($result);
                                 if ($confirm >0 )
@@ -245,12 +241,12 @@
                                                     "<td>".$row['Member_No']."</td>".
                                                     "<td>".$row['Name']."</td>".
                                                     "<td>".$row['Surname']."</td>".
-                                                    "<td>".$row['Current_Club']."</td>".
+                                                    "<td>".$row['Current_Position']."</td>".
                                                     "<td>".$row['Province']."</td>".
-                                                    "<td>".$row['Contract_date']."</td>".
-                                                    "<td>".$row['Experiary_date']."</td>".
-                                                    "<td>".$row['Previous_Club']."</td>".
-                                                    "<td>".$row['Previous_Club_Province']."</td>".
+                                                    "<td>".$row['Organization']."</td>".
+                                                    "<td>".$row['Telephone']."</td>".
+                                                    "<td>".$row['Position_period']."</td>".
+                                                    "<td>".$row['Tenure']."</td>".
                                               "</tr>";
                                     }
                                 }
@@ -279,18 +275,16 @@
                                     <th>Member No</th>
                                     <th>Name</th>
                                     <th>Surname</th>
-                                    <th>Gender</th>
-                                    <th>Height</th>
-                                    <th>Weight</th>
-                                    <th>Default Hand</th>
-                                    <th>Allergies</th>
+                                    <th>Appointment</th>
+                                    <th>Type</th>
+                                    <th>Province</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
 
                                 require '../dbh/dbh.php';
-                                $sql = "SELECT * FROM players,health_details WHERE players.Member_No = health_details.Member_No";
+                                $sql = "SELECT * FROM adminstrators,appointments WHERE adminstrators.Member_No = appointments.Member_No";
                                 $result = mysqli_query($Conn,$sql);
                                 $confirm = mysqli_num_rows($result);
                                 if ($confirm >0 )
@@ -301,11 +295,9 @@
                                                     "<td>".$row['Member_No']."</td>".
                                                     "<td>".$row['Name']."</td>".
                                                     "<td>".$row['Surname']."</td>".
-                                                    "<td>".$row['Gender']."</td>".
-                                                    "<td>".$row['Height']."</td>".
-                                                    "<td>".$row['Weight']."</td>".
-                                                    "<td>".$row['Default_Hand']."</td>".
-                                                    "<td>".$row['Allegies']."</td>".
+                                                    "<td>".$row['Appointment']."</td>".
+                                                    "<td>".$row['Type']."</td>".
+                                                    "<td>".$row['Province']."</td>".
                                               "</tr>";
                                     }
                                 }
@@ -336,18 +328,15 @@
                                     <th>Name</th>
                                     <th>Surname</th>
                                     <th>Gender</th>
-                                    <th>Position</th>
-                                    <th>Highest Level</th>
-                                    <th>National Team Caps</th>
-                                    <th>Provincial Team Caps</th>
-                                    <th>Zone 6 Games</th>
+                                    <th>Award</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
 
                                 require '../dbh/dbh.php';
-                                $sql = "SELECT * FROM players,sports_details WHERE players.Member_No = sports_details.Member_No";
+                                $sql = "SELECT * FROM adminstrators,awards WHERE adminstrators.Member_No = awards.Member_No";
                                 $result = mysqli_query($Conn,$sql);
                                 $confirm = mysqli_num_rows($result);
                                 if ($confirm >0 )
@@ -359,11 +348,7 @@
                                                     "<td>".$row['Name']."</td>".
                                                     "<td>".$row['Surname']."</td>".
                                                     "<td>".$row['Gender']."</td>".
-                                                    "<td>".$row['FIVB_No']."</td>".
-                                                    "<td>".$row['Highest_Level_Played']."</td>".
-                                                    "<td>".$row['National_Team_Caps']."</td>".
-                                                    "<td>".$row['Provincial_Team_Cap']."</td>".
-                                                    "<td>".$row['Zone_6_Games']."</td>".
+                                                    "<td>".$row['Award']."</td>".
                                               "</tr>";
                                     }
                                 }
@@ -393,13 +378,59 @@
                                     <th>Name</th>
                                     <th>Surname</th>
                                     <th>Gender</th>
-                                    <th>O Level School</th>
-                                    <th>Province</th>
-                                    <th>Year</th>
-                                    <th>A Level School</th>
-                                    <th>Province</th>
-                                    <th>Year</th>
-                                    <th>Tertiary School</th>
+                                    <th>Certificate</th>
+                                    <th>Copy</th>
+                            </thead>
+                            <tbody>
+                                <?php
+                                require '../dbh/dbh.php';
+                                $sql = "SELECT * FROM adminstrators,admin_certificates WHERE adminstrators.Member_No = admin_certificates.Member_No";
+                                $result = mysqli_query($Conn,$sql);
+                                $confirm = mysqli_num_rows($result);
+                                if ($confirm >0 )
+                                {
+                                    while ($row = mysqli_fetch_assoc($result))
+                                    {
+                                        $path = $row['File_path'];
+                                          echo "<tr>".
+                                                    "<td>".$row['Member_No']."</td>".
+                                                    "<td>".$row['Name']."</td>".
+                                                    "<td>".$row['Surname']."</td>".
+                                                    "<td>".$row['Gender']."</td>".
+                                                    "<td>".$row['Desciption']."</td>".
+                                                    "<td>"."<a href = '$path'>Download</a>"."</td>".
+                                              "</tr>";
+                                    }
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            
+            <div id = "ntaa" style = "display: none;"> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tile">
+                        <div class="tile-header">
+                            <img src = "../assets/img/logo2.png" style = "display: inline;">
+                            <h1 style = "display: inline;margin-left:60px;">   Zimbabwe Volleyball Association</h1>
+                        </div>
+                        <hr>
+                        <div class="tile-body">
+                        <table class="table table-hover table-bordered" id="sampleTable5">
+                            <thead>
+                                <tr>
+                                    <th>Member No</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Gender</th>
+                                    <th>Institute</th>
+                                    <th>Nature of Institute</th>
                                     <th>Province</th>
                                     <th>Year</th>
                                 </tr>
@@ -407,7 +438,7 @@
                             <tbody>
                                 <?php
                                 require '../dbh/dbh.php';
-                                $sql = "SELECT * FROM players,players_education_background WHERE players.Member_No = players_education_background.Member_No";
+                                $sql = "SELECT * FROM coaches,institutes_coached WHERE coaches.Member_No = institutes_coached.Member_No";
                                 $result = mysqli_query($Conn,$sql);
                                 $confirm = mysqli_num_rows($result);
                                 if ($confirm >0 )
@@ -419,15 +450,10 @@
                                                     "<td>".$row['Name']."</td>".
                                                     "<td>".$row['Surname']."</td>".
                                                     "<td>".$row['Gender']."</td>".
-                                                    "<td>".$row['O_Level']."</td>".
-                                                    "<td>".$row['O_Level_Province']."</td>".
-                                                    "<td>".$row['O_Level_Year']."</td>".
-                                                    "<td>".$row['A_Level']."</td>".
-                                                    "<td>".$row['A_Level_Province']."</td>".
-                                                    "<td>".$row['A_Level_Year']."</td>".
-                                                    "<td>".$row['Tertiary']."</td>".
-                                                    "<td>".$row['Tertiary_Province']."</td>".
-                                                    "<td>".$row['Tertiary_Year']."</td>".
+                                                    "<td>".$row['School']."</td>".
+                                                    "<td>".$row['School_type']."</td>".
+                                                    "<td>".$row['Province']."</td>".
+                                                    "<td>".$row['Year']."</td>".
                                               "</tr>";
                                     }
                                 }
@@ -448,16 +474,19 @@
                                 <button type = "button" onclick = "info()" class= "btn btn-default">Info</button>
                             </li>
                             <li>
-                                <button type = "button" onclick= "proffession()" class= "btn btn-default">Proffesion</button>
+                                <button type = "button" onclick= "proffession()" class= "btn btn-default">Experience</button>
                             </li>
                             <li>
-                                <button type = "button" onclick = "health_information()" class = "btn btn-default">Health</button>
+                                <button type = "button" onclick = "health_information()" class = "btn btn-default">Qualifications</button>
                             </li>
                             <li>
-                                <button type = "button" onclick= "sporting()" class = "btn btn-default">Sport</button>
+                                <button type = "button" onclick= "sporting()" class = "btn btn-default">Awards</button>
                             </li>
+                            <!-- <li>
+                                <button type = "button" onclick= "ntaaa()" class = "btn btn-default">Certifications</button>
+                            </li> -->
                             <li>
-                                <button type = "button" onclick = "education()" class = "btn btn-default">Education</button>
+                                <button type = "button" onclick = "education()" class = "btn btn-default">Certifications</button>
                             </li>
                         </ul>
                         <p class="copyright text-center">
@@ -483,6 +512,7 @@
 <script type="text/javascript">$('#sampleTable2').DataTable();</script>
 <script type="text/javascript">$('#sampleTable3').DataTable();</script>
 <script type="text/javascript">$('#sampleTable4').DataTable();</script>
+<script type="text/javascript">$('#sampleTable5').DataTable();</script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="../assets/js/plugins/bootstrap-switch.js"></script>
 <!--  Google Maps Plugin    -->

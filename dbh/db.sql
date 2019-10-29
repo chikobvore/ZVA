@@ -79,4 +79,150 @@ CREATE TABLE Health_Details
     Default_Hand varchar(5),
     Allegies Text
 );
-GO
+
+CREATE TABLE Coaches
+
+(
+    Id INT NOT NULL AUTO INCREMENT PRIMARY KEY, -- primary key column
+    Member_No varchar(100),
+    Profile varchar(100),
+    Name varchar(255),
+    Surname varchar(255),
+    Gender varchar(6),
+    National_ID varchar(255),
+    Passport_No varchar(100),
+    Email varchar(255),
+    Contact varchar(30),
+    Physical_Address Text,
+    DOB varchar(10),
+    Place_of_Birth Text,
+);
+CREATE TABLE Coache_Sporting
+(
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Member_No varchar(100),
+    Current_Club varchar(255),
+    Province varchar(255),
+    Coaching_position varchar(255),
+    Previous_Club varchar(255),
+    Previous_Club_Province varchar(255),
+    Previous_coaching_position varchar(255)
+)
+CREATE TABLE Institutes_coached
+(
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Member_No varchar(100),
+    School varchar(255),
+    School_type varchar(255),
+    Province varchar(255),
+    Year varchar(30)
+)
+CREATE TABLE Provincial_Team_Assignment
+(
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Member_No varchar(100),
+    Assignment varchar(255),
+    Type_of_School varchar(255),
+    Province varchar(255),
+    Year varchar(255)
+)
+CREATE TABLE National_Team_Assignment
+(
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Member_No varchar(100),
+    Type varchar(100),
+    Province varchar(255),
+    Year varchar(30)
+)
+CREATE TABLE Coaching_Qualification
+(
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Member_No varchar(100),
+    Qualification varchar(255),
+    Type varchar(100),
+    Level varchar(100),
+    Date_certified varchar(100),
+
+)
+CREATE TABLE Last_Certified
+(
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Member_No varchar(100),
+    Date_certified varchar(100),
+    Grade varchar(30),
+    Course_Name varchar(30),
+    Instructor varchar(255)
+
+)
+CREATE TABLE Coaches_Certificates
+(
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Member_No varchar(100),
+    Desciption Text,
+    File_path varchar(255)
+)
+CREATE TABLE admins
+(
+    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name varchar(255),
+    Surname varchar(255),
+    Email text,
+    Position varchar(100)
+
+)
+CREATE TABLE Members
+
+(
+    Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- primary key column
+    Member_No varchar(100),
+    Profile TEXT,
+    Name varchar(255),
+    Surname varchar(255),
+    Gender varchar(6),
+    National_ID varchar(255),
+    Passport_No varchar(100),
+    Email varchar(255),
+    Contact varchar(30),
+    Physical_Address Text
+);
+CREATE TABLE Adminstrators
+
+(
+    Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- primary key column
+    Member_No varchar(100),
+    Profile TEXT,
+    Name varchar(255),
+    Surname varchar(255),
+    Gender varchar(6),
+    National_ID varchar(255),
+    Passport_No varchar(100),
+    Email varchar(255),
+    Contact varchar(30),
+    Physical_Address Text
+);
+CREATE TABLE admin_work_details
+(
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Member_No varchar(100),
+    Current_Position varchar(255),
+    Province varchar(255),
+    Organization varchar(255),
+    Telephone varchar(255),
+    Position_period INT,
+    Tenure varchar(255)
+)
+CREATE TABLE appointments
+(
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Member_No varchar(100),
+    Appointment varchar(255),
+    Type varchar(100),
+    Province varchar(255),
+)
+CREATE TABLE Admin_Certificates
+(
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Member_No varchar(100),
+    Desciption Text,
+    File_path varchar(255)
+)

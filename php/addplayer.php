@@ -68,9 +68,45 @@
                                     VALUES ('$member_no','$height','$weight','$d_hand')";
                                     if ($Conn->query($sql4) === TRUE)
                                     {
-                                        session_start();
-                                        $_SESSION['message'] = "You have successfully Registered";
-                                        header("location: ../pages/Registration.php");
+                                        $target_dir = "../files/";
+                                        $target_file = $target_dir . basename($_FILES['pp']["name"]);
+                                        $uploadOk = 1;
+                                        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            
+                                        if (file_exists($target_file))
+                                        {
+                                            echo "Sorry, file already exists.";
+                                            $uploadOk = 0;
+                                        }
+            
+                                        if ($_FILES['pp']["size"] > 5000000)
+                                        {
+                                            echo "Sorry, your file is too large.";
+                                            $uploadOk = 0;
+                                        }
+                                        if ($uploadOk == 0)
+                                        {
+                                            echo "Failed to upload";
+                                        }else{
+
+                                            if (move_uploaded_file($_FILES['pp']["tmp_name"], $target_file))
+                                            {
+                                                $_SESSION['message'] = "The file ". basename( $_FILES['pp']["name"]). " has been uploaded.";
+                                                $filename = basename($_FILES['pp']['name']);
+                                                $filepath = $target_dir.$filename;
+            
+                                                $sql7 = "UPDATE players SET Profile_Picture = '$filepath' WHERE Member_No = '$member_no'";
+                                                if ($Conn->query($sql7) === TRUE)
+                                                {
+                                                    $_SESSION['message'] = "You have succesfully registered as a player";
+                                                    header('location: ../pages/Registration.php');
+                                                }else{
+                                                    echo "Error: " . $sql7 . "<br>" . $Conn->error;
+                                                }
+                                            }else{
+                                                echo "failed";
+                                            }
+                                        }
                                     }else{
                                         echo "Error: " . $sql4 . "<br>" . $Conn->error;
                                     }
